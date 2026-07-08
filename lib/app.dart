@@ -1,5 +1,5 @@
 import 'package:docbridgeconnect/core/theme/app_theme.dart';
-import 'package:docbridgeconnect/features/splash/splash_screen.dart';
+import 'package:docbridgeconnect/features/splash/presentation/splash_screen.dart';
 
 import 'package:flutter/material.dart';
 
