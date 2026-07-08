@@ -5,10 +5,7 @@ class AppShadows {
 
   static List<BoxShadow> card = [
     BoxShadow(
-      // TODO: check withOpacity
-      color: Colors.black.withOpacity(
-        .15,
-      ),
+      color: Colors.black.withValues(alpha: .15),
       blurRadius: 30,
       offset: const Offset(0, 10),
     ),
@@ -16,10 +13,7 @@ class AppShadows {
 
   static List<BoxShadow> glow = [
     BoxShadow(
-      // TODO: check withOpacity
-      color: const Color(
-        0xFF00E5A8,
-      ).withOpacity(.15),
+      color: const Color(0xFF00E5A8).withValues(alpha: .15),
       blurRadius: 40,
       spreadRadius: 2,
     ),
