@@ -5,4 +5,5 @@ class Appconstants {
   static const String appTagLine =
       'Professional Wireless Document Scanner';
   static const String appVersion = '1.0.0';
+  static const double logoSize = 150;
 }
