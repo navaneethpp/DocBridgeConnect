@@ -7,6 +7,7 @@ class AppColors {
   static const background = Color(0xFF141218);
   static const surface = Color(0xFF1D1B20);
   static const card = Color(0xFF211F24);
+  static const splashScreen = Colors.white;
 
   // Primary
   static const primary = Color(0xFF00E5A8);
