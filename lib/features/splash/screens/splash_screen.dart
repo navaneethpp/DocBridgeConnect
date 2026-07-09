@@ -1,15 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:docbridgeconnect/features/splash/widgets/splash_background.dart';
+import 'package:flutter/widgets.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('Splash')));
+    return SplashBackground(
+      child: const Center(child: Text('DocBridge Connect')),
+    );
   }
 }
