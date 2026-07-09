@@ -4,27 +4,24 @@ class AppColors {
   AppColors._();
 
   //background
-  static const background = Color(0xFF141218);
-  static const surface = Color(0xFF1D1B20);
-  static const card = Color(0xFF211F24);
-  static const splashScreen = Colors.white;
+  static const background = Color(0xFF101416);
+  static const surface = Color(0xFF1C2023);
 
-  // Primary
-  static const primary = Color(0xFF00E5A8);
-  static const secondary = Color(0xFF3B82F6);
+  // Brand
+  static const primary = Color(0xFF45EFBB);
+  static const secondary = Color(0xFF0266FF);
 
   // Text
-  static const textPrimary = Color(0xFFE6E0E9);
-  static const textSecondary = Color(0xFFCBC4D2);
+  static const textPrimary = Color(0xFFE0E3E6);
+  static const textSecondary = Color(0xFFBACAC1);
 
   // Status
-  static const success = Color(0xFF10B981);
-  static const warning = Color(0xFFF59E0B);
-  static const error = Color(0xFFEF4444);
+  static const success = Color(0xFF00D2A0);
+  static const warning = Color(0xFFFFB800);
+  static const error = Color(0xFFFF3B30);
 
-  // Border
-  static const border = Color(0x14FFFFFF);
-
-  // Glass
-  static const glass = Color(0xB3211F24);
+  // Others
+  static const border = Color(0xFF3B4A43);
+  static const white = Colors.white;
+  static const black = Colors.black;
 }

@@ -1,11 +1,15 @@
+import 'package:flutter/material.dart';
+
 class AppRadius {
   AppRadius._();
 
-  static const xs = 8.0;
-  static const sm = 12.0;
-  static const md = 16.0;
-  static const lg = 24.0;
-  static const xl = 32.0;
+  static const xs = Radius.circular(4);
+  static const sm = Radius.circular(8);
+  static const md = Radius.circular(12);
+  static const lg = Radius.circular(16);
+  static const xl = Radius.circular(24);
 
-  static const pill = 999.0;
+  static const card = BorderRadius.all(lg);
+  static const button = BorderRadius.all(lg);
+  static const dialog = BorderRadius.all(xl);
 }

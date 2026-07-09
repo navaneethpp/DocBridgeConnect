@@ -1,38 +1,25 @@
+import 'package:docbridgeconnect/core/theme/app_colors.dart';
+import 'package:docbridgeconnect/core/theme/app_typography.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppTextTheme {
   AppTextTheme._();
 
-  static TextTheme
-  textTheme = TextTheme(
-    displayLarge: GoogleFonts.inter(
-      fontSize: 48,
-      fontWeight: FontWeight.w300,
-      letterSpacing: -1,
+  static TextTheme dark = TextTheme(
+    displayLarge: AppTypography.display.copyWith(
+      color: AppColors.primary,
     ),
-    headlineLarge: GoogleFonts.inter(
-      fontSize: 32,
-      fontWeight: FontWeight.w600,
+    headlineMedium: AppTypography.headline.copyWith(
+      color: AppColors.textPrimary,
     ),
-    headlineMedium: GoogleFonts.inter(
-      fontSize: 24,
-      fontWeight: FontWeight.w500,
+    titleLarge: AppTypography.title.copyWith(
+      color: AppColors.textPrimary,
     ),
-    bodyLarge: GoogleFonts.inter(
-      fontSize: 18,
+    bodyLarge: AppTypography.body.copyWith(
+      color: AppColors.textPrimary,
     ),
-    bodyMedium: GoogleFonts.inter(
-      fontSize: 16,
-    ),
-    labelLarge: GoogleFonts.inter(
-      fontSize: 14,
-      fontWeight: FontWeight.w600,
-    ),
-    labelSmall: GoogleFonts.inter(
-      fontSize: 12,
-      fontWeight: FontWeight.w500,
-      letterSpacing: .4,
+    bodyMedium: AppTypography.body.copyWith(
+      color: AppColors.textSecondary,
     ),
   );
 }
