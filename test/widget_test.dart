@@ -5,8 +5,8 @@ void main() {
   testWidgets('DocBridgeApp loads', (
     WidgetTester tester,
   ) async {
-    await tester.pumpWidget(const DocBridgeApp());
+    await tester.pumpWidget(const DocBridgeConnect());
 
-    expect(find.byType(DocBridgeApp), findsOneWidget);
+    expect(find.byType(DocBridgeConnect), findsOneWidget);
   });
 }

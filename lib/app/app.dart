@@ -3,8 +3,8 @@ import 'package:docbridgeconnect/app/app_router.dart';
 
 import 'package:flutter/material.dart';
 
-class DocBridgeApp extends StatelessWidget {
-  const DocBridgeApp({super.key});
+class DocBridgeConnect extends StatelessWidget {
+  const DocBridgeConnect({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +13,9 @@ class DocBridgeApp extends StatelessWidget {
 
       title: 'DocBridge Connect',
 
-      theme: AppTheme.dark,
+      routerConfig: AppRouter.router,
 
-      routerConfig: appRouter,
+      theme: AppTheme.dark,
     );
   }
 }

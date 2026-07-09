@@ -1,8 +1,9 @@
 import 'package:docbridgeconnect/app/app.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const DocBridgeApp());
+  runApp(const DocBridgeConnect());
 }
