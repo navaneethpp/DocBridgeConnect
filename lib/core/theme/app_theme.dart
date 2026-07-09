@@ -9,8 +9,7 @@ class AppTheme {
   static ThemeData dark = ThemeData(
     brightness: Brightness.dark,
 
-    scaffoldBackgroundColor:
-        AppColors.background,
+    scaffoldBackgroundColor: AppColors.background,
 
     colorScheme: const ColorScheme.dark(
       primary: AppColors.primary,
@@ -21,8 +20,7 @@ class AppTheme {
     textTheme: AppTextTheme.textTheme,
 
     appBarTheme: const AppBarTheme(
-      backgroundColor:
-          Colors.transparent,
+      backgroundColor: Colors.transparent,
       elevation: 0,
       centerTitle: true,
     ),

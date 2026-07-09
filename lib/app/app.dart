@@ -1,5 +1,5 @@
 import 'package:docbridgeconnect/core/theme/app_theme.dart';
-import 'package:docbridgeconnect/features/splash/presentation/splash_screen.dart';
+import 'package:docbridgeconnect/app/app_router.dart';
 
 import 'package:flutter/material.dart';
 
@@ -8,14 +8,14 @@ class DocBridgeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
 
-      title: 'DocBridge',
+      title: 'DocBridge Connect',
 
       theme: AppTheme.dark,
 
-      home: const Splashscreen(),
+      routerConfig: appRouter,
     );
   }
 }

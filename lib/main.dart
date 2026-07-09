@@ -1,4 +1,4 @@
-import 'package:docbridgeconnect/app.dart';
+import 'package:docbridgeconnect/app/app.dart';
 import 'package:flutter/material.dart';
 
 void main() {
