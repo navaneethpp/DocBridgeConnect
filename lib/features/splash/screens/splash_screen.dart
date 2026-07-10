@@ -1,3 +1,4 @@
+import 'package:docbridgeconnect/features/splash/widgets/animated_logo.dart';
 import 'package:docbridgeconnect/features/splash/widgets/splash_background.dart';
 import 'package:flutter/widgets.dart';
 
@@ -7,7 +8,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SplashBackground(
-      child: const Center(child: Text('DocBridge Connect')),
+      child: const Center(child: AnimatedLogo()),
     );
   }
 }
