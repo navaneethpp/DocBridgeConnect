@@ -5,7 +5,7 @@ import 'package:docbridgeconnect/core/theme/app_motion.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedLogo extends StatefulWidget {
-  const AnimatedLogo({super.key, this.size = 190});
+  const AnimatedLogo({super.key, this.size = 220});
 
   final double size;
 
@@ -168,3 +168,5 @@ class _AnimatedLogoState extends State<AnimatedLogo>
     );
   }
 }
+
+// TODO: 2, 3, 7, 8, 9, 10
