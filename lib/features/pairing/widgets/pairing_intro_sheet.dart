@@ -3,13 +3,6 @@ import 'package:docbridgeconnect/core/theme/app_radius.dart';
 import 'package:docbridgeconnect/core/theme/app_spacing.dart';
 import 'package:flutter/material.dart';
 
-/// A premium Material 3 bottom sheet that introduces DocBridge Connect
-/// to first-time users.
-///
-/// Usage:
-/// ```dart
-/// PairingIntroSheet.show(context);
-/// ```
 class PairingIntroSheet extends StatelessWidget {
   const PairingIntroSheet._();
 
