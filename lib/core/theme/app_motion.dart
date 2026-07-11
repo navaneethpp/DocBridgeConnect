@@ -12,6 +12,7 @@ class AppMotion {
   );
 
   static const floating = Duration(seconds: 4);
+  static const splashDuration = Duration(seconds: 3);
 
   static const curve = Curves.easeInOut;
 }
