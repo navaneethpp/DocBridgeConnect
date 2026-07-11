@@ -38,7 +38,10 @@ class _PairingScreenState extends State<PairingScreen> {
 
               const SizedBox(height: 20),
 
-              const SecurityBadge(),
+              const SecurityBadge(
+                status: SecurityStatus
+                    .encrypted, // TODO: Need to implement the logic
+              ),
 
               const SizedBox(height: 24),
 
