@@ -1,5 +1,7 @@
+import 'package:docbridgeconnect/features/pairing/screens/pairing_screen.dart';
 import 'package:docbridgeconnect/features/splash/screens/splash_screen.dart';
 import 'package:docbridgeconnect/routes/route_names.dart';
+
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -14,10 +16,10 @@ class AppRouter {
         builder: (_, _) => const SplashScreen(),
       ),
 
-      // GoRoute(
-      //   path: RouteNames.pairing,
-      //   builder: (_, _) => const PairingScreen(),
-      // ),
+      GoRoute(
+        path: RouteNames.pairing,
+        builder: (_, _) => const PairingScreen(),
+      ),
     ],
   );
 }
