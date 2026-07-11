@@ -51,7 +51,14 @@ class _PairingScreenState extends State<PairingScreen> {
 
               const SizedBox(height: 20),
 
-              const AppButton(),
+              AppButton(
+                text: 'Continue',
+                icon: Icons.arrow_forward_rounded,
+                enabled: true,
+                onPressed: () {
+                  print('Pressed Continue Button!');
+                },
+              ),
 
               const SizedBox(height: 20),
 
