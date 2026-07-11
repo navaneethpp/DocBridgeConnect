@@ -29,7 +29,7 @@ class AppButton extends StatelessWidget {
       height: 50,
       decoration: BoxDecoration(
         color: isEnabled
-            ? AppColors.primary.withValues(alpha: 0.7)
+            ? AppColors.primary.withValues(alpha: 0.82)
             : AppColors.primary.withValues(alpha: .18),
         borderRadius: AppRadius.dialog,
       ),
