@@ -168,5 +168,3 @@ class _AnimatedLogoState extends State<AnimatedLogo>
     );
   }
 }
-
-// TODO: 2, 3, 7, 8, 9, 10
