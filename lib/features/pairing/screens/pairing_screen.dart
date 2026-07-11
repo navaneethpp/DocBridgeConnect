@@ -9,8 +9,12 @@ class PairingScreen extends StatefulWidget {
 }
 
 class _PairingScreenState extends State<PairingScreen> {
+  bool isQrSelected = true;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('Pairing')));
+    return Scaffold(
+      body: SafeArea(child: Column(children: [])),
+    );
   }
 }
