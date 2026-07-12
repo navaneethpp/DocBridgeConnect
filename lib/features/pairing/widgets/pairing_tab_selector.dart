@@ -1,17 +1,18 @@
 import 'package:docbridgeconnect/core/theme/app_colors.dart';
 import 'package:docbridgeconnect/core/theme/app_motion.dart';
 import 'package:docbridgeconnect/core/theme/app_radius.dart';
+import 'package:docbridgeconnect/features/pairing/models/pairing_mode.dart';
 import 'package:flutter/material.dart';
 
 class PairingTabSelector extends StatelessWidget {
   const PairingTabSelector({
     super.key,
-    required this.isQrSelected,
+    required this.pairingMode,
     required this.onChanged,
   });
 
-  final bool isQrSelected;
-  final ValueChanged<bool> onChanged;
+  final PairingMode pairingMode;
+  final ValueChanged<PairingMode> onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +28,16 @@ class PairingTabSelector extends StatelessWidget {
           Expanded(
             child: _TabButton(
               title: 'QR Code',
-              selected: isQrSelected,
-              onTap: () => onChanged(true),
+              selected: pairingMode == PairingMode.qr,
+              onTap: () => onChanged(PairingMode.qr),
             ),
           ),
 
           Expanded(
             child: _TabButton(
               title: 'Pair Code',
-              selected: !isQrSelected,
-              onTap: () => onChanged(false),
+              selected: pairingMode == PairingMode.manual,
+              onTap: () => onChanged(PairingMode.manual),
             ),
           ),
         ],

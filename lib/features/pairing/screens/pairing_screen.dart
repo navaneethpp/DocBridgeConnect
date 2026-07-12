@@ -1,4 +1,6 @@
+import 'package:docbridgeconnect/core/theme/app_motion.dart';
 import 'package:docbridgeconnect/core/widgets/buttons/app_button.dart';
+import 'package:docbridgeconnect/features/pairing/models/pairing_mode.dart';
 import 'package:docbridgeconnect/features/pairing/widgets/device_connection.dart';
 import 'package:docbridgeconnect/features/pairing/widgets/manual_pair_view.dart';
 import 'package:docbridgeconnect/features/pairing/widgets/pairing_header.dart';
@@ -18,7 +20,7 @@ class PairingScreen extends StatefulWidget {
 }
 
 class _PairingScreenState extends State<PairingScreen> {
-  bool isQrSelected = true;
+  PairingMode _pairingMode = PairingMode.qr;
 
   @override
   Widget build(BuildContext context) {
@@ -46,17 +48,31 @@ class _PairingScreenState extends State<PairingScreen> {
               const SizedBox(height: 24),
 
               PairingTabSelector(
-                isQrSelected: isQrSelected,
-                onChanged: (value) {
+                pairingMode: _pairingMode,
+                onChanged: (mode) {
                   setState(() {
-                    isQrSelected = value;
+                    _pairingMode = mode;
                   });
                 },
               ),
               Expanded(
-                child: isQrSelected
-                    ? const QrPairView()
-                    : const ManualPairView(),
+                child: AnimatedSwitcher(
+                  duration: AppMotion.fast,
+                  child: switch (_pairingMode) {
+                    PairingMode.qr => QrPairView(
+                      key: const ValueKey('qr'),
+                      onUsePairCode: () {
+                        setState(() {
+                          _pairingMode = PairingMode.manual;
+                        });
+                      },
+                    ),
+                    PairingMode.manual =>
+                      const ManualPairView(
+                        key: ValueKey('manual'),
+                      ),
+                  },
+                ),
               ),
 
               const SizedBox(height: 20),
