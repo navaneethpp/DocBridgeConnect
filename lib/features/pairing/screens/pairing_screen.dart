@@ -18,7 +18,7 @@ class PairingScreen extends StatefulWidget {
 }
 
 class _PairingScreenState extends State<PairingScreen> {
-  final bool isQrSelected = true;
+  bool isQrSelected = true;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,14 @@ class _PairingScreenState extends State<PairingScreen> {
 
               const SizedBox(height: 24),
 
-              const PairingTabSelector(),
+              PairingTabSelector(
+                isQrSelected: isQrSelected,
+                onChanged: (value) {
+                  setState(() {
+                    isQrSelected = value;
+                  });
+                },
+              ),
               Expanded(
                 child: isQrSelected
                     ? const QrPairView()

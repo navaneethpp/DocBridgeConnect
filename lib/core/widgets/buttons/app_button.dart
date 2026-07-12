@@ -31,7 +31,7 @@ class AppButton extends StatelessWidget {
         color: isEnabled
             ? AppColors.primary.withValues(alpha: 0.82)
             : AppColors.primary.withValues(alpha: .18),
-        borderRadius: AppRadius.dialog,
+        borderRadius: AppRadius.button,
       ),
       child: Material(
         color: Colors.transparent,
