@@ -1,3 +1,4 @@
+import 'package:docbridgeconnect/features/pairing/widgets/qr_scanner.dart';
 import 'package:flutter/material.dart';
 
 class QrPairView extends StatelessWidget {
@@ -17,12 +18,12 @@ class QrPairView extends StatelessWidget {
           child: Center(
             child: AspectRatio(
               aspectRatio: 1,
-              child: Container(
-                alignment: Alignment.center,
-                child: const Icon(
-                  Icons.qr_code_scanner_rounded,
-                  size: 80,
-                ),
+              child: QrScanner(
+                onDetected: (value) {
+                  debugPrint(value);
+
+                  // Connection logic later
+                },
               ),
             ),
           ),
