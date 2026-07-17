@@ -5,7 +5,7 @@ import 'package:docbridgeconnect/features/pairing/widgets/device_connection.dart
 import 'package:docbridgeconnect/features/pairing/widgets/manual_pair_view.dart';
 import 'package:docbridgeconnect/features/pairing/widgets/pairing_header.dart';
 import 'package:docbridgeconnect/features/pairing/widgets/pairing_tab_selector.dart';
-import 'package:docbridgeconnect/features/pairing/widgets/qr_pair_view.dart';
+import 'package:docbridgeconnect/features/pairing/widgets/qr/qr_pair_view.dart';
 import 'package:docbridgeconnect/features/pairing/widgets/security_badge.dart';
 import 'package:docbridgeconnect/features/pairing/widgets/waiting_status.dart';
 
