@@ -1,4 +1,7 @@
 import 'package:docbridgeconnect/core/services/permission_service.dart';
+import 'package:docbridgeconnect/core/widgets/feedback/app_loading_indicator.dart';
+import 'package:docbridgeconnect/core/widgets/feedback/permission_denied_view.dart';
+import 'package:docbridgeconnect/core/widgets/feedback/permission_request_view.dart';
 import 'package:docbridgeconnect/features/pairing/models/qr_permission_state.dart';
 import 'package:docbridgeconnect/features/pairing/widgets/qr/qr_scanner.dart';
 import 'package:flutter/material.dart';
@@ -70,102 +73,28 @@ class _QrPairViewState extends State<QrPairView> {
   Widget build(BuildContext context) {
     switch (_permissionState) {
       case QrPermissionState.checking:
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return const AppLoadingIndicator();
 
       case QrPermissionState.denied:
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.camera_alt_outlined,
-                size: 72,
-              ),
-
-              const SizedBox(height: 24),
-
-              Text(
-                'Camera Permission Required',
-                style: Theme.of(
-                  context,
-                ).textTheme.titleLarge,
-              ),
-
-              const SizedBox(height: 12),
-
-              Text(
-                'Allow camera access to scan the pairing QR code.',
-                textAlign: TextAlign.center,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium,
-              ),
-
-              const SizedBox(height: 28),
-
-              FilledButton(
-                onPressed: _requestPermission,
-                child: const Text('Grant Camera Access'),
-              ),
-
-              const SizedBox(height: 12),
-
-              TextButton(
-                onPressed: widget.onUsePairCode,
-                child: const Text(
-                  "Can't scan? Enter Pair Code",
-                ),
-              ),
-            ],
-          ),
+        return PermissionRequestView(
+          icon: Icons.camera_alt_outlined,
+          title: 'Camera Permission Required',
+          description: 'Allow camera access to scan the pairing QR code.',
+          primaryButtonText: 'Grant Camera Access',
+          onPrimaryPressed: _requestPermission,
+          secondaryButtonText: "Can't scan? Enter Pair Code",
+          onSecondaryPressed: widget.onUsePairCode,
         );
 
       case QrPermissionState.permanentlyDenied:
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.warning_amber_rounded,
-                size: 72,
-              ),
-
-              const SizedBox(height: 24),
-
-              Text(
-                'Camera Permission Denied',
-                style: Theme.of(
-                  context,
-                ).textTheme.titleLarge,
-              ),
-
-              const SizedBox(height: 12),
-
-              Text(
-                'Please enable camera permission from Settings to continue.',
-                textAlign: TextAlign.center,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium,
-              ),
-
-              const SizedBox(height: 28),
-
-              FilledButton(
-                onPressed: PermissionService.openSettings,
-                child: const Text('Open Settings'),
-              ),
-
-              const SizedBox(height: 12),
-
-              TextButton(
-                onPressed: widget.onUsePairCode,
-                child: const Text('Use Pair Code Instead'),
-              ),
-            ],
-          ),
+        return PermissionDeniedView(
+          icon: Icons.warning_amber_rounded,
+          title: 'Camera Permission Denied',
+          description: 'Please enable camera permission from Settings to continue.',
+          buttonText: 'Open Settings',
+          onPressed: PermissionService.openSettings,
+          secondaryButtonText: 'Use Pair Code Instead',
+          onSecondaryPressed: widget.onUsePairCode,
         );
 
       case QrPermissionState.granted:
@@ -214,3 +143,4 @@ class _QrPairViewState extends State<QrPairView> {
     }
   }
 }
+
