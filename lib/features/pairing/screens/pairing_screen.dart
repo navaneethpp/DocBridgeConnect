@@ -2,7 +2,7 @@ import 'package:docbridgeconnect/core/theme/app_motion.dart';
 import 'package:docbridgeconnect/core/widgets/buttons/app_button.dart';
 import 'package:docbridgeconnect/features/pairing/models/pairing_mode.dart';
 import 'package:docbridgeconnect/features/pairing/widgets/device_connection.dart';
-import 'package:docbridgeconnect/features/pairing/widgets/manual_pair_view.dart';
+import 'package:docbridgeconnect/features/pairing/widgets/manual/manual_pair_view.dart';
 import 'package:docbridgeconnect/features/pairing/widgets/pairing_header.dart';
 import 'package:docbridgeconnect/features/pairing/widgets/pairing_tab_selector.dart';
 import 'package:docbridgeconnect/features/pairing/widgets/qr/qr_pair_view.dart';
@@ -24,6 +24,9 @@ class _PairingScreenState extends State<PairingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final keyboardVisible =
+        MediaQuery.of(context).viewInsets.bottom > 0;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -32,20 +35,65 @@ class _PairingScreenState extends State<PairingScreen> {
           ),
           child: Column(
             children: [
-              const PairingHeader(),
-
-              const SizedBox(height: 24),
-
-              const DeviceConnection(),
-
-              const SizedBox(height: 20),
-
-              const SecurityBadge(
-                status: SecurityStatus
-                    .encrypted, // TODO: Need to implement the logic
+              AnimatedContainer(
+                duration: AppMotion.normal,
+                curve: AppMotion.curve,
+                width: double.infinity,
+                height: keyboardVisible ? 28 : 44,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width - 40,
+                    child: const PairingHeader(),
+                  ),
+                ),
               ),
 
-              const SizedBox(height: 24),
+              AnimatedContainer(
+                duration: AppMotion.normal,
+                curve: AppMotion.curve,
+                height: keyboardVisible ? 8 : 24,
+              ),
+
+              AnimatedContainer(
+                duration: AppMotion.normal,
+                curve: AppMotion.curve,
+                width: double.infinity,
+                height: keyboardVisible ? 36 : 68,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width - 40,
+                    child: const DeviceConnection(),
+                  ),
+                ),
+              ),
+
+              AnimatedContainer(
+                duration: AppMotion.normal,
+                curve: AppMotion.curve,
+                height: keyboardVisible ? 6 : 20,
+              ),
+
+              AnimatedContainer(
+                duration: AppMotion.normal,
+                curve: AppMotion.curve,
+                width: double.infinity,
+                height: keyboardVisible ? 24 : 34,
+                child: const FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: SecurityBadge(
+                    status: SecurityStatus.encrypted,
+                  ),
+                ),
+              ),
+
+              AnimatedContainer(
+                duration: AppMotion.normal,
+                curve: AppMotion.curve,
+                height: keyboardVisible ? 8 : 24,
+              ),
 
               PairingTabSelector(
                 pairingMode: _pairingMode,
@@ -67,15 +115,23 @@ class _PairingScreenState extends State<PairingScreen> {
                         });
                       },
                     ),
-                    PairingMode.manual =>
-                      const ManualPairView(
-                        key: ValueKey('manual'),
-                      ),
+                    PairingMode.manual => ManualPairView(
+                      key: const ValueKey('manual'),
+                      onUseQrScanner: () {
+                        setState(() {
+                          _pairingMode = PairingMode.qr;
+                        });
+                      },
+                    ),
                   },
                 ),
               ),
 
-              const SizedBox(height: 20),
+              AnimatedContainer(
+                duration: AppMotion.normal,
+                curve: AppMotion.curve,
+                height: keyboardVisible ? 8 : 20,
+              ),
 
               AppButton(
                 text: 'Continue',
@@ -86,9 +142,33 @@ class _PairingScreenState extends State<PairingScreen> {
                 },
               ),
 
-              const SizedBox(height: 20),
+              AnimatedContainer(
+                duration: AppMotion.normal,
+                curve: AppMotion.curve,
+                height: keyboardVisible ? 0 : 20,
+              ),
 
-              const WaitingStatus(),
+              AnimatedSwitcher(
+                duration: AppMotion.normal,
+                switchInCurve: AppMotion.curve,
+                switchOutCurve: AppMotion.curve,
+                transitionBuilder: (child, animation) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: SizeTransition(
+                      sizeFactor: animation,
+                      child: child,
+                    ),
+                  );
+                },
+                child: keyboardVisible
+                    ? const SizedBox.shrink(
+                        key: ValueKey('waiting_hidden'),
+                      )
+                    : const WaitingStatus(
+                        key: ValueKey('waiting_visible'),
+                      ),
+              ),
             ],
           ),
         ),
