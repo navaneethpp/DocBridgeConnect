@@ -11,46 +11,107 @@ enum SecurityStatus {
   insecure,
 }
 
-class SecurityBadge extends StatelessWidget {
+class SecurityBadge extends StatefulWidget {
   const SecurityBadge({
     super.key,
     this.status = SecurityStatus.encrypted,
+    this.isGlowing = false,
   });
 
   final SecurityStatus status;
+  final bool isGlowing;
+
+  @override
+  State<SecurityBadge> createState() => _SecurityBadgeState();
+}
+
+class _SecurityBadgeState extends State<SecurityBadge>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _glowController;
+  late final Animation<double> _glowAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _glowController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    );
+
+    _glowAnimation = Tween<double>(begin: 0.2, end: 0.8).animate(
+      CurvedAnimation(parent: _glowController, curve: Curves.easeInOut),
+    );
+
+    if (widget.isGlowing) {
+      _glowController.repeat(reverse: true);
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant SecurityBadge oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.isGlowing != oldWidget.isGlowing) {
+      if (widget.isGlowing) {
+        _glowController.repeat(reverse: true);
+      } else {
+        _glowController.stop();
+        _glowController.reset();
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _glowController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final style = _SecurityBadgeStyle.fromStatus(status);
+    final style = _SecurityBadgeStyle.fromStatus(widget.status);
 
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.md,
-        vertical: AppSpacing.sm,
-      ),
-      decoration: BoxDecoration(
-        color: style.backgroundColor,
-        borderRadius: AppRadius.dialog,
-        border: Border.all(color: style.borderColor),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(style.icon, size: 18, color: style.color),
+    return AnimatedBuilder(
+      animation: _glowController,
+      builder: (context, child) {
+        final glowAlpha = widget.isGlowing ? _glowAnimation.value : 0.0;
 
-          const SizedBox(width: AppSpacing.sm),
-
-          Text(
-            style.label,
-            style: Theme.of(context).textTheme.labelMedium
-                ?.copyWith(
-                  color: style.color,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 1,
-                ),
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md,
+            vertical: AppSpacing.sm,
           ),
-        ],
-      ),
+          decoration: BoxDecoration(
+            color: style.backgroundColor,
+            borderRadius: AppRadius.dialog,
+            border: Border.all(color: style.borderColor),
+            boxShadow: widget.isGlowing
+                ? [
+                    BoxShadow(
+                      color: style.color.withValues(alpha: 0.4 * glowAlpha),
+                      blurRadius: 12,
+                      spreadRadius: 2 * glowAlpha,
+                    ),
+                  ]
+                : [],
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(style.icon, size: 18, color: style.color),
+              const SizedBox(width: AppSpacing.sm),
+              Text(
+                style.label,
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: style.color,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1,
+                    ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

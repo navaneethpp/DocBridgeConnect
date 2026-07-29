@@ -11,9 +11,11 @@ class QrPairView extends StatefulWidget {
   const QrPairView({
     super.key,
     required this.onUsePairCode,
+    this.onQrScanned,
   });
 
   final VoidCallback onUsePairCode;
+  final ValueChanged<String>? onQrScanned;
 
   @override
   State<QrPairView> createState() => _QrPairViewState();
@@ -109,11 +111,7 @@ class _QrPairViewState extends State<QrPairView> {
                   child: QrScanner(
                     onDetected: (value) {
                       debugPrint('QR Detected: $value');
-
-                      // TODO:
-                      // Validate QR
-                      // Connect to host
-                      // Navigate to Camera Screen
+                      widget.onQrScanned?.call(value);
                     },
                   ),
                 ),
@@ -143,4 +141,3 @@ class _QrPairViewState extends State<QrPairView> {
     }
   }
 }
-

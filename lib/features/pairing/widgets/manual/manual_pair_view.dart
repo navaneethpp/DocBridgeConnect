@@ -9,13 +9,16 @@ class ManualPairView extends StatefulWidget {
     super.key,
     required this.onUseQrScanner,
     this.onValidityChanged,
+    this.onPairCodeEntered,
   });
 
   final VoidCallback onUseQrScanner;
 
   /// Called whenever the validity of the entered pair code changes.
-  /// Prepared for future validation — not acted upon yet by the parent.
   final ValueChanged<bool>? onValidityChanged;
+
+  /// Called when a complete pair code is entered.
+  final ValueChanged<String>? onPairCodeEntered;
 
   @override
   State<ManualPairView> createState() =>
@@ -24,13 +27,12 @@ class ManualPairView extends StatefulWidget {
 
 class _ManualPairViewState extends State<ManualPairView> {
   void _onCodeChanged(String code) {
-    // Validity hook — currently always false until validation is implemented.
-    widget.onValidityChanged?.call(false);
+    widget.onValidityChanged?.call(code.length == 6);
   }
 
   void _onCodeCompleted(String code) {
-    // Validity hook — currently always false until validation is implemented.
-    widget.onValidityChanged?.call(false);
+    widget.onValidityChanged?.call(true);
+    widget.onPairCodeEntered?.call(code);
   }
 
   @override
